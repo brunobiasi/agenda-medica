@@ -1,11 +1,12 @@
-
+import Inicio from './pages/client/painel';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <h1>AGENDA MÉDICA</h1>
-      </header>
+      </header> */}
+      <Inicio/>
     </div>
   );
 }

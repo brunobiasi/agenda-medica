@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -57,7 +58,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function MenuAdmin() {
+export default function MenuAdmin({title}) {
 
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -66,6 +67,7 @@ export default function MenuAdmin() {
 
   return (
     <>
+      <CssBaseline />
       <AppBar position="absolute" open={open}>
         <Toolbar
           sx={{
@@ -91,7 +93,7 @@ export default function MenuAdmin() {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Dashboard
+            {title}
           </Typography>
         </Toolbar>
       </AppBar>

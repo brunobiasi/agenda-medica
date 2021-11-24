@@ -33,6 +33,17 @@ function DashboardContent() {
     loadUsuarios();
   }, []);
 
+  async function handleDelete(id){
+    if(window.confirm("Deseja realmente excluir este usuário?")){
+      var result = await api.delete('/api/usuarios/'+id);
+      if(result.status == 200){
+        window.location.href = '/admin/usuarios';
+      } else {
+        alert('Ocorreu um erro. Por favor, tente novamente!');
+      }
+    }
+  }
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -90,7 +101,7 @@ function DashboardContent() {
                                 <TableCell align="right">
                                   <ButtonGroup variant="contained" aria-label="outlined primary button group">
                                     <Button>Atualizar</Button>
-                                    <Button>Excluir</Button>
+                                    <Button onClick={() => handleDelete(row._id)}>Excluir</Button>
                                   </ButtonGroup>
                                 </TableCell>
                               </TableRow>

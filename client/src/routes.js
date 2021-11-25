@@ -32,7 +32,7 @@ export default function RoutesAll(){
 
                 <Route path="/admin/usuarios" exact element={<Usuarios/>}/>
                 <Route path="/admin/usuarios/cadastrar" exact element={<UsuarioCadastrar/>}/>
-                <Route path="/admin/usuarios/editar/:idProduto" exact element={<UsuarioEditar/>}/>
+                <Route path="/admin/usuarios/editar/:idUsuario" exact element={<UsuarioEditar/>}/>
             </Routes>
         </BrowserRouter>
     )

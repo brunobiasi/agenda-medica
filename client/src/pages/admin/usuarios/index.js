@@ -100,7 +100,7 @@ function DashboardContent() {
                                 <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
                                 <TableCell align="right">
                                   <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                                    <Button>Atualizar</Button>
+                                    <Button href={'/admin/usuarios/editar/'+row._id}>Atualizar</Button>
                                     <Button onClick={() => handleDelete(row._id)}>Excluir</Button>
                                   </ButtonGroup>
                                 </TableCell>

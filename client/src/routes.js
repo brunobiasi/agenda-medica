@@ -11,6 +11,8 @@ import Usuarios from './pages/admin/usuarios';
 import UsuarioEditar from './pages/admin/usuarios/usuarios.editar';
 import UsuarioCadastrar from './pages/admin/usuarios/usuarios.cadastrar';
 
+import Login from './pages/admin/login';
+
 // IMPORTS CLIENT
 import Home from './pages/client/home';
 import ProdutoDetails from './pages/client/produtos/produtos.details';
@@ -25,6 +27,7 @@ export default function RoutesAll(){
 
                 {/* Rota Admin */}
                 <Route path="/admin" exact element={<Dashboard/>}/>
+                <Route path="/admin/login" exact element={<Login/>}/>
 
                 <Route path="/admin/produtos" exact element={<Produtos/>}/>
                 <Route path="/admin/produtos/cadastrar" exact element={<ProdutoCadastrar/>}/>

@@ -129,7 +129,8 @@ function DashboardContent() {
                           label="tipo"
                         >
                           <MenuItem value={1}>Administrador</MenuItem>
-                          <MenuItem value={2}>Funcionário</MenuItem>
+                          <MenuItem value={2}>Gerente</MenuItem>
+                          <MenuItem value={3}>Funcionário</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>

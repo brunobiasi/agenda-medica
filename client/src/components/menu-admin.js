@@ -11,6 +11,8 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from './list-menu-admin';
+import { getNomeUsuario } from '../services/auth';
+import logoSistema from '../assets/img/logo-empresa.png';
 
 const drawerWidth = 240;
 
@@ -95,6 +97,7 @@ export default function MenuAdmin({title}) {
           >
             {title}
           </Typography>
+          {getNomeUsuario()}
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -106,6 +109,7 @@ export default function MenuAdmin({title}) {
             px: [1],
           }}
         >
+          <img style={{width: 75, height: 50}} src={logoSistema} alt="Logo sistema" />
           <IconButton onClick={toggleDrawer}>
             <ChevronLeftIcon />
           </IconButton>

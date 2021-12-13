@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import api from '../../../services/api';
-import { login, setIdUsuario, setNomeUsuario } from '../../../services/auth';
+import { login, setIdUsuario, setNomeUsuario, setTipoUsuario } from '../../../services/auth';
 
 function Copyright(props) {
     return (
@@ -42,6 +42,7 @@ export default function SignIn() {
                         login(res.data.token);
                         setIdUsuario(res.data.id_client);
                         setNomeUsuario(res.data.user_name);
+                        setTipoUsuario(res.data.user_type);
 
                         window.location.href = '/admin';
                     } else if (res.data.status == 2) {

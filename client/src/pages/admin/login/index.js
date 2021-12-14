@@ -20,6 +20,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import CircularProgress from '@mui/material/CircularProgress';
 import api from '../../../services/api';
 import { login, setIdUsuario, setNomeUsuario, setTipoUsuario } from '../../../services/auth';
 
@@ -42,6 +43,7 @@ export default function SignIn() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     async function handleSubmit() {
         await api.post('/api/usuarios/login', { email, senha })
@@ -57,10 +59,20 @@ export default function SignIn() {
                     } else if (res.data.status == 2) {
                         alert("Atenção: " + res.data.error);
                     }
+                    setLoading(false);
                 } else {
                     alert("Erro no servidor");
+                    setLoading(false);
                 }
             })
+    }
+
+    function loadSubmit(){
+        setLoading(true);
+        setTimeout(
+            () => handleSubmit(),
+            2000
+        );
     }
 
     return (
@@ -131,9 +143,10 @@ export default function SignIn() {
                             fullWidth
                             variant="contained"
                             sx={{ mt: 3, mb: 2 }}
-                            onClick={handleSubmit}
+                            onClick={loadSubmit}
+                            disabled={loading}
                         >
-                            Entrar
+                            {loading ? <CircularProgress /> : "ENTRAR"}
                         </Button>
                     </Box>
                 </Box>

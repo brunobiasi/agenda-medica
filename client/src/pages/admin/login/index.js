@@ -12,6 +12,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import api from '../../../services/api';
 import { login, setIdUsuario, setNomeUsuario, setTipoUsuario } from '../../../services/auth';
 
@@ -33,6 +41,7 @@ const theme = createTheme();
 export default function SignIn() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     async function handleSubmit() {
         await api.post('/api/usuarios/login', { email, senha })
@@ -85,7 +94,7 @@ export default function SignIn() {
                             value={email}
                             onChange={e => setEmail(e.target.value)}
                         />
-                        <TextField
+                        {/* <TextField
                             margin="normal"
                             required
                             fullWidth
@@ -96,7 +105,28 @@ export default function SignIn() {
                             autoComplete="current-password"
                             value={senha}
                             onChange={e => setSenha(e.target.value)}
-                        />
+                        /> */}
+                        <FormControl sx={{ mt: 1, width: '100%' }} variant="outlined">
+                            <InputLabel htmlFor="campoSenha">Digite sua senha</InputLabel>
+                            <OutlinedInput
+                                id="campoSenha"
+                                type={showPassword ? 'text' : 'password'}
+                                value={senha}
+                                onChange={e => setSenha(e.target.value)}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={e => setShowPassword(!showPassword)}
+                                            edge="end"
+                                        >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                                label="Digite sua senha"
+                            />
+                        </FormControl>
                         <Button
                             fullWidth
                             variant="contained"

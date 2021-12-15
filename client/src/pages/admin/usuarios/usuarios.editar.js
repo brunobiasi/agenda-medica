@@ -28,9 +28,9 @@ function DashboardContent() {
   const { idUsuario } = useParams();
 
   useEffect(() => {
-    async function getUsuario(){
-      var response = await api.get('/api/usuarios.details/'+idUsuario);
-      
+    async function getUsuario() {
+      var response = await api.get('/api/usuarios.details/' + idUsuario);
+
       setNome(response.data.nome_usuario);
       setEmail(response.data.email_usuario);
       setSenha(response.data.senha_usuario);
@@ -79,9 +79,11 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
+                <Button style={{ marginBottom: 10, marginRight: 5 }} variant="contained" href={'/admin/usuarios'}>Voltar</Button>
+                <Button style={{ marginBottom: 10 }} variant="contained" href={'/admin/usuarios/cadastrar'}>Cadastrar</Button>
                 <Paper
                   sx={{
                     p: 2,
@@ -149,7 +151,7 @@ function DashboardContent() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={12}>
-                      <Button variant="contained" onClick={handleSubmit}>SALVAR</Button>
+                      <Button style={{backgroundColor: "green"}} variant="contained" onClick={handleSubmit}>SALVAR</Button>
                     </Grid>
                   </Grid>
                 </Paper>

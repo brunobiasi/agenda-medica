@@ -34,13 +34,13 @@ function DashboardContent() {
       setUsuarios(response.data);
       setLoading(false);
     }
-    setTimeout(() => loadUsuarios(), 1000);
+    loadUsuarios();
   }, []);
 
-  async function handleDelete(id){
-    if(window.confirm("Deseja realmente excluir este usuário?")){
-      var result = await api.delete('/api/usuarios/'+id);
-      if(result.status == 200){
+  async function handleDelete(id) {
+    if (window.confirm("Deseja realmente excluir este usuário?")) {
+      var result = await api.delete('/api/usuarios/' + id);
+      if (result.status == 200) {
         window.location.href = '/admin/usuarios';
       } else {
         alert('Ocorreu um erro. Por favor, tente novamente!');
@@ -65,9 +65,10 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
+                <Button style={{marginBottom: 10}} variant="contained" href={'/admin/usuarios/cadastrar'}>Cadastrar</Button>
                 <Paper
                   sx={{
                     p: 2,
@@ -80,39 +81,39 @@ function DashboardContent() {
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={12}>
                       <TableContainer component={Paper}>
-                        {loading ? (<LinearProgress style={{width:'50%', margin:'20px auto'}}/>) : (
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                          <TableHead>
-                            <TableRow>
-                              <TableCell>Nome</TableCell>
-                              <TableCell align="center">Email</TableCell>
-                              <TableCell align="center">Tipo</TableCell>
-                              <TableCell align="center">Data de Cadastro</TableCell>
-                              <TableCell align="right">Opções</TableCell>
-                            </TableRow>
-                          </TableHead>
-                          <TableBody>
-                            {usuarios.map((row) => (
-                              <TableRow
-                                key={row._id}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                              >
-                                <TableCell component="th" scope="row">
-                                  {row.nome_usuario}
-                                </TableCell>
-                                <TableCell align="center">{row.email_usuario}</TableCell>
-                                <TableCell align="center"><Chip label={getNomeTipo(row.tipo_usuario)} color={getNomeTipoLabel(row.tipo_usuario)} /></TableCell>
-                                <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
-                                <TableCell align="right">
-                                  <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                                    <Button href={'/admin/usuarios/editar/'+row._id}>Atualizar</Button>
-                                    <Button onClick={() => handleDelete(row._id)}>Excluir</Button>
-                                  </ButtonGroup>
-                                </TableCell>
+                        {loading ? (<LinearProgress style={{ width: '50%', margin: '20px auto' }} />) : (
+                          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                              <TableRow>
+                                <TableCell>Nome</TableCell>
+                                <TableCell align="center">Email</TableCell>
+                                <TableCell align="center">Tipo</TableCell>
+                                <TableCell align="center">Data de Cadastro</TableCell>
+                                <TableCell align="right">Opções</TableCell>
                               </TableRow>
-                            ))}
-                          </TableBody>
-                        </Table>)}
+                            </TableHead>
+                            <TableBody>
+                              {usuarios.map((row) => (
+                                <TableRow
+                                  key={row._id}
+                                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                  <TableCell component="th" scope="row">
+                                    {row.nome_usuario}
+                                  </TableCell>
+                                  <TableCell align="center">{row.email_usuario}</TableCell>
+                                  <TableCell align="center"><Chip label={getNomeTipo(row.tipo_usuario)} color={getNomeTipoLabel(row.tipo_usuario)} /></TableCell>
+                                  <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
+                                  <TableCell align="right">
+                                    <ButtonGroup aria-label="outlined primary button group">
+                                      <Button variant="contained" href={'/admin/usuarios/editar/' + row._id}>Atualizar</Button>
+                                      <Button variant="contained" onClick={() => handleDelete(row._id)}>Excluir</Button>
+                                    </ButtonGroup>
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>)}
                       </TableContainer>
                     </Grid>
                   </Grid>

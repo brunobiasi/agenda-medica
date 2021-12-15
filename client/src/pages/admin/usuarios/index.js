@@ -17,6 +17,7 @@ import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Chip from '@mui/material/Chip';
+import LinearProgress from '@mui/material/LinearProgress';
 import api from '../../../services/api';
 import { getNomeTipo, getNomeTipoLabel } from '../../../functions/static_data';
 
@@ -25,13 +26,15 @@ const mdTheme = createTheme();
 function DashboardContent() {
 
   const [usuarios, setUsuarios] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadUsuarios() {
       const response = await api.get("/api/usuarios");
       setUsuarios(response.data);
+      setLoading(false);
     }
-    loadUsuarios();
+    setTimeout(() => loadUsuarios(), 1000);
   }, []);
 
   async function handleDelete(id){
@@ -77,6 +80,7 @@ function DashboardContent() {
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={12}>
                       <TableContainer component={Paper}>
+                        {loading ? (<LinearProgress style={{width:'50%', margin:'20px auto'}}/>) : (
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                           <TableHead>
                             <TableRow>
@@ -108,7 +112,7 @@ function DashboardContent() {
                               </TableRow>
                             ))}
                           </TableBody>
-                        </Table>
+                        </Table>)}
                       </TableContainer>
                     </Grid>
                   </Grid>

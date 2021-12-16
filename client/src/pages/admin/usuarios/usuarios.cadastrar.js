@@ -13,6 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SaveIcon from '@mui/icons-material/Save';
 import api from '../../../services/api';
 
 const mdTheme = createTheme();
@@ -65,7 +67,7 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
-                <Button style={{ marginBottom: 10 }} variant="contained" href={'/admin/usuarios'}>Voltar</Button>
+                <Button style={{ marginBottom: 10 }} variant="contained" href={'/admin/usuarios'}><ArrowBackIcon />Voltar</Button>
                 <Paper
                   sx={{
                     p: 2,
@@ -133,7 +135,7 @@ function DashboardContent() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={12}>
-                      <Button style={{backgroundColor: "green"}} variant="contained" onClick={handleSubmit}>SALVAR</Button>
+                      <Button style={{backgroundColor: "green"}} variant="contained" onClick={handleSubmit}><SaveIcon />Salvar</Button>
                     </Grid>
                   </Grid>
                 </Paper>

@@ -18,6 +18,9 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Chip from '@mui/material/Chip';
 import LinearProgress from '@mui/material/LinearProgress';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import api from '../../../services/api';
 import { getNomeTipo, getNomeTipoLabel } from '../../../functions/static_data';
 
@@ -68,7 +71,7 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
-                <Button style={{marginBottom: 10}} variant="contained" href={'/admin/usuarios/cadastrar'}>Cadastrar</Button>
+                <Button style={{marginBottom: 10}} variant="contained" href={'/admin/usuarios/cadastrar'}><AddIcon />Cadastrar</Button>
                 <Paper
                   sx={{
                     p: 2,
@@ -106,8 +109,8 @@ function DashboardContent() {
                                   <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
                                   <TableCell align="right">
                                     <ButtonGroup aria-label="outlined primary button group">
-                                      <Button variant="contained" href={'/admin/usuarios/editar/' + row._id}>Atualizar</Button>
-                                      <Button variant="contained" onClick={() => handleDelete(row._id)}>Excluir</Button>
+                                      <Button variant="contained" href={'/admin/usuarios/editar/' + row._id}><EditIcon />Editar</Button>
+                                      <Button variant="contained" onClick={() => handleDelete(row._id)}><DeleteIcon /></Button>
                                     </ButtonGroup>
                                   </TableCell>
                                 </TableRow>

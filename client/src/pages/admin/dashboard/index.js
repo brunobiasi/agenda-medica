@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import MenuAdmin from '../../../components/menu-admin';
 import { getTipoUsuario } from '../../../services/auth';
 import Footer from '../../../components/footer-admin';
@@ -15,9 +14,9 @@ import DashAdmin from './admin';
 const mdTheme = createTheme();
 
 function getDashboard(){
-  if(getTipoUsuario() == '1'){
+  if(getTipoUsuario() === '1'){
     return <DashAdmin />
-  } else if(getTipoUsuario() == '2'){
+  } else if(getTipoUsuario() === '2'){
     return <DashGerente />
   } else {
     return <DashFuncionario />

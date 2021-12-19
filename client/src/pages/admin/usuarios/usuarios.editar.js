@@ -52,10 +52,10 @@ function DashboardContent() {
       _id: idUsuario
     }
 
-    if (nome != '' && email != '' && senha != '' && tipo != '') {
+    if (nome !== '' && email !== '' && senha !== '' && tipo !== '') {
       const response = await api.put('/api/usuarios', data);
 
-      if (response.status == 200) {
+      if (response.status === 200) {
         window.location.href = '/admin/usuarios';
       } else {
         alert('Erro ao atualizar o usuário!');

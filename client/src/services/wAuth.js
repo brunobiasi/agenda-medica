@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import api from './api';
-import { login, logout, getToken } from './auth';
+import { logout, getToken } from './auth';
 import { Route, Redirect } from 'react-router-dom';
 import LinearProgress from '@mui/material/LinearProgress';
 
@@ -12,7 +12,7 @@ export default function WAuth({ component: Component, ...rest }) {
         async function verify() {
             var res = await api.get('/api/usuarios/checktoken', { params: { token: getToken() } });
 
-            if (res.data.status == 200) {
+            if (res.data.status === 200) {
                 setLoading(false);
                 setRedirect(false);
             } else {

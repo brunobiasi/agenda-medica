@@ -6,7 +6,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import MenuAdmin from '../../../components/menu-admin';
-import ImgAdmin from '../../../assets/img/admin.jpeg';
 import Footer from '../../../components/footer-admin';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -43,7 +42,7 @@ function DashboardContent() {
   async function handleDelete(id) {
     if (window.confirm("Deseja realmente excluir este usuário?")) {
       var result = await api.delete('/api/usuarios/' + id);
-      if (result.status == 200) {
+      if (result.status === 200) {
         window.location.href = '/admin/usuarios';
       } else {
         alert('Ocorreu um erro. Por favor, tente novamente!');

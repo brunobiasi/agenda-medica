@@ -2,7 +2,7 @@ import ImgAdmin from '../../../assets/img/admin-funcionario.jpg';
 
 function DashboardContent() {
   
-  return (<img src={ImgAdmin}/>);
+  return (<img alt="ImgAdmin" src={ImgAdmin}/>);
 }
 
 export default function Dashboard() {

@@ -97,19 +97,19 @@ function DashboardContent() {
                             <TableBody>
                               {usuarios.map((row) => (
                                 <TableRow
-                                  key={row._id}
+                                  key={row.id}
                                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                   <TableCell component="th" scope="row">
-                                    {row.nome_usuario}
+                                    {row.name}
                                   </TableCell>
-                                  <TableCell align="center">{row.email_usuario}</TableCell>
-                                  <TableCell align="center"><Chip label={getNomeTipo(row.tipo_usuario)} color={getNomeTipoLabel(row.tipo_usuario)} /></TableCell>
+                                  <TableCell align="center">{row.email}</TableCell>
+                                  <TableCell align="center"><Chip label={getNomeTipo(row.type)} color={getNomeTipoLabel(row.type)} /></TableCell>
                                   <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
                                   <TableCell align="right">
                                     <ButtonGroup aria-label="outlined primary button group">
-                                      <Button variant="contained" href={'/admin/usuarios/editar/' + row._id}><EditIcon />Editar</Button>
-                                      <Button variant="contained" onClick={() => handleDelete(row._id)}><DeleteIcon /></Button>
+                                      <Button variant="contained" href={'/admin/usuarios/editar/' + row.id}><EditIcon />Editar</Button>
+                                      <Button variant="contained" onClick={() => handleDelete(row.id)}><DeleteIcon /></Button>
                                     </ButtonGroup>
                                   </TableCell>
                                 </TableRow>

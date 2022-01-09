@@ -28,10 +28,10 @@ function DashboardContent() {
 
   async function handleSubmit() {
     const data = {
-      nome_usuario: nome,
-      email_usuario: email,
-      senha_usuario: senha,
-      tipo_usuario: tipo
+      name: nome,
+      email: email,
+      type: tipo,
+      password: senha,
     }
 
     if (nome !== '' && email !== '' && senha !== '' && tipo !== '') {

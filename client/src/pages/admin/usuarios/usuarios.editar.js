@@ -34,10 +34,10 @@ function DashboardContent() {
     async function getUsuario() {
       var response = await api.get('/api/usuarios.details/' + idUsuario);
 
-      setNome(response.data.nome_usuario);
-      setEmail(response.data.email_usuario);
-      setSenha(response.data.senha_usuario);
-      setTipo(response.data.tipo_usuario);
+      setNome(response.data.name);
+      setEmail(response.data.email);
+      setSenha(response.data.password_hash);
+      setTipo(response.data.type);
     }
 
     getUsuario();
@@ -45,11 +45,11 @@ function DashboardContent() {
 
   async function handleSubmit() {
     const data = {
-      nome_usuario: nome,
-      email_usuario: email,
-      senha_usuario: senha,
-      tipo_usuario: tipo,
-      _id: idUsuario
+      name: nome,
+      email: email,
+      password: senha,
+      type: tipo,
+      id: idUsuario
     }
 
     if (nome !== '' && email !== '' && senha !== '' && tipo !== '') {

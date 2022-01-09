@@ -37,12 +37,12 @@ const theme = createTheme();
 
 export default function SignIn() {
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
 
     async function handleSubmit() {
-        await api.post('/api/usuarios/login', { email, senha })
+        await api.post('/api/usuarios/login', { email, password })
             .then(res => {
                 if (res.status === 200) {
                     if (res.data.status === 1) {
@@ -63,7 +63,7 @@ export default function SignIn() {
             })
     }
 
-    function loadSubmit(){
+    function loadSubmit() {
         setLoading(true);
         setTimeout(
             () => handleSubmit(),
@@ -111,16 +111,16 @@ export default function SignIn() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
-                            value={senha}
-                            onChange={e => setSenha(e.target.value)}
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
                         /> */}
                         <FormControl sx={{ mt: 1, width: '100%' }} variant="outlined">
                             <InputLabel htmlFor="campoSenha">Digite sua senha</InputLabel>
                             <OutlinedInput
                                 id="campoSenha"
                                 type={showPassword ? 'text' : 'password'}
-                                value={senha}
-                                onChange={e => setSenha(e.target.value)}
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
                                 endAdornment={
                                     <InputAdornment position="end">
                                         <IconButton

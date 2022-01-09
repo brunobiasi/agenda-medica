@@ -1,5 +1,5 @@
-const { update } = require('../models/usuario.model');
-const Agendamento = require('../models/agendamento.model');
+// const { update } = require('../models/usuario.model');
+// const Agendamento = require('../models/agendamento.model')
 
 module.exports = {
     async index(req, res){

@@ -1,39 +1,33 @@
-// const { update } = require('../models/usuario.model');
-// const Agendamento = require('../models/agendamento.model')
+const { Scheduling } = require('../models');
 
 module.exports = {
-    async index(req, res){
-        const scheduling = await Agendamento.find();
+    async index(req, res) {
+        const scheduling = await Scheduling.findAll();
         res.json(scheduling);
     },
-    async create(req, res){
-        const {hora, cliente, convenio, tipo, telefone} = req.body;
-        let data = {};
-        let scheduling = await Agendamento.findOne({cliente});
-        
-        if(!scheduling){
-            data = {hora, cliente, convenio, tipo, telefone};
-            
-            scheduling = await Agendamento.create(data);
-            return res.status(200).json(scheduling);
-        } else {
-            return res.status(500).json(scheduling);
-        }
+    async create(req, res) {
+        const { date, hour, client, health_insurance, type, phone } = req.body;
+        let data = { date, hour, client, health_insurance, type, phone };
+
+        let scheduling = await Scheduling.create(data);
+        return res.status(200).json(scheduling);
     },
-    async details(req, res){
-        const {_id} = req.params;
-        const scheduling = await Agendamento.findOne({_id});
+    async details(req, res) {
+        const { id } = req.params;
+        const scheduling = await Scheduling.findByPk(id);
         res.json(scheduling);
     },
-    async delete(req, res){
-        const {_id} = req.params;
-        const scheduling = await Agendamento.findByIdAndDelete({_id});
+    async delete(req, res) {
+        const { id } = req.params;
+        const scheduling = await Scheduling.destroy({ where: { id } });
         return res.json(scheduling);
     },
-    async update(req, res){
-        const {_id, hora, cliente, convenio, tipo, telefone} = req.body;
-        const data = {hora, cliente, convenio, tipo, telefone};
-        const scheduling = await Agendamento.findOneAndUpdate({_id}, data, {new: true});
+    async update(req, res) {
+        const { id, date, hour, client, health_insurance, type, phone } = req.body;
+        const data = { date, hour, client, health_insurance, type, phone };
+        const scheduling = await Scheduling.findByPk(id);
+        scheduling.set(data);
+        await scheduling.save();
         res.json(scheduling);
-    }
+    },
 }

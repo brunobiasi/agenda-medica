@@ -4,7 +4,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import PeopleIcon from '@mui/icons-material/People';
 import ExitToApp from '@mui/icons-material/ExitToApp';
 import { getToken, logout } from '../services/auth';
@@ -24,11 +24,11 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Usuários" />
     </ListItem>
-    <ListItem button component="a" href="/admin/produtos">
+    <ListItem button component="a" href="/admin/agendamentos">
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <CalendarTodayIcon />
       </ListItemIcon>
-      <ListItemText primary="Produtos" />
+      <ListItemText primary="Agendamentos" />
     </ListItem>
   </div>
 );

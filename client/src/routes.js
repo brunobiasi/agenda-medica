@@ -4,9 +4,9 @@ import PrivateRoute from './services/wAuth';
 // IMPORTS ADMIN
 import Dashboard from './pages/admin/dashboard';
 
-import Produtos from './pages/admin/produtos';
-import ProdutoEditar from './pages/admin/produtos/produtos.editar';
-import ProdutoCadastrar from './pages/admin/produtos/produtos.cadastrar';
+import Agendamentos from './pages/admin/agendamentos';
+import AgendamentoEditar from './pages/admin/agendamentos/agendamentos.editar';
+import AgendamentoCadastrar from './pages/admin/agendamentos/agendamentos.cadastrar';
 
 import Usuarios from './pages/admin/usuarios';
 import UsuarioEditar from './pages/admin/usuarios/usuarios.editar';
@@ -30,9 +30,9 @@ export default function RoutesAll() {
                 <Route path="/admin/login" exact component={Login} />
                 <PrivateRoute path="/admin" exact component={Dashboard} />
 
-                <PrivateRoute path="/admin/produtos" exact component={Produtos} />
-                <PrivateRoute path="/admin/produtos/cadastrar" exact component={ProdutoCadastrar} />
-                <PrivateRoute path="/admin/produtos/editar/:idProduto" exact component={ProdutoEditar} />
+                <PrivateRoute path="/admin/agendamentos" exact component={Agendamentos} />
+                <PrivateRoute path="/admin/agendamentos/cadastrar" exact component={AgendamentoCadastrar} />
+                <PrivateRoute path="/admin/agendamentos/editar/:idAgendamento" exact component={AgendamentoEditar} />
 
                 <PrivateRoute path="/admin/usuarios" exact component={Usuarios} />
                 <PrivateRoute path="/admin/usuarios/cadastrar" exact component={UsuarioCadastrar} />

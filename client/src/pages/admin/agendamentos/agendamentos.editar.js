@@ -23,42 +23,48 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
 
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [data, setData] = useState('');
+  const [hora, setHora] = useState('');
+  const [cliente, setCliente] = useState('');
+  const [convenio, setConvenio] = useState('');
   const [tipo, setTipo] = useState('');
+  const [telefone, setTelefone] = useState('');
 
-  const { idUsuario } = useParams();
+  const { idAgendamento } = useParams();
 
   useEffect(() => {
-    async function getUsuario() {
-      var response = await api.get('/api/usuarios.details/' + idUsuario);
+    async function getAgendamento() {
+      var response = await api.get('/api/agendamentos.details/' + idAgendamento);
 
-      setNome(response.data.name);
-      setEmail(response.data.email);
-      setSenha(response.data.password_hash);
+      setData(response.data.date);
+      setHora(response.data.hour);
+      setCliente(response.data.client);
+      setConvenio(response.data.health_insurance);
       setTipo(response.data.type);
+      setTelefone(response.data.phone);
     }
 
-    getUsuario();
+    getAgendamento();
   }, []);
 
   async function handleSubmit() {
-    const data = {
-      name: nome,
-      email: email,
-      password: senha,
+    const dados = {
+      date: data,
+      hour: hora,
+      client: cliente,
+      health_insurance: convenio,
       type: tipo,
-      id: idUsuario
+      phone: telefone,
+      id: idAgendamento,
     }
 
-    if (nome !== '' && email !== '' && senha !== '' && tipo !== '') {
-      const response = await api.put('/api/usuarios', data);
+    if (data !== '' && hora !== '' && cliente !== '' && convenio !== '' && tipo !== '' && telefone !== '') {
+      const response = await api.put('/api/agendamentos', dados);
 
       if (response.status === 200) {
-        window.location.href = '/admin/usuarios';
+        window.location.href = '/admin/agendamentos';
       } else {
-        alert('Erro ao atualizar o usuário!');
+        alert('Erro ao atualizar o agendamento!');
       }
     } else {
       alert('Por favor, preencha todos os dados!');
@@ -68,7 +74,7 @@ function DashboardContent() {
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
-        <MenuAdmin title={'USUÁRIOS'} />
+        <MenuAdmin title={'AGENDAMENTOS'} />
         <Box
           component="main"
           sx={{
@@ -85,8 +91,8 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
-                <Button style={{ marginBottom: 10, marginRight: 5 }} variant="contained" href={'/admin/usuarios'}><ArrowBackIcon />Voltar</Button>
-                <Button style={{ marginBottom: 10 }} variant="contained" href={'/admin/usuarios/cadastrar'}><AddIcon />Cadastrar</Button>
+                <Button style={{ marginBottom: 10, marginRight: 5 }} variant="contained" href={'/admin/agendamentos'}><ArrowBackIcon />Voltar</Button>
+                <Button style={{ marginBottom: 10 }} variant="contained" href={'/admin/agendamentos/cadastrar'}><AddIcon />Cadastrar</Button>
                 <Paper
                   sx={{
                     p: 2,
@@ -95,32 +101,58 @@ function DashboardContent() {
                     height: 290,
                   }}
                 >
-                  <h2>Atualização de Usuários</h2>
+                  <h2>Atualização de Agendamentos</h2>
                   <Grid container spacing={3}>
-                    <Grid item xs={12} sm={12}>
+                    <Grid item xs={12} sm={3}>
                       <TextField
                         required
-                        id="nome"
-                        name="nome"
-                        label="Nome completo"
+                        id="data"
+                        name="data"
+                        label="Data"
                         fullWidth
-                        autoComplete="nome"
+                        autoComplete="data"
                         variant="standard"
-                        value={nome}
-                        onChange={e => setNome(e.target.value)}
+                        value={data}
+                        onChange={e => setData(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                      <TextField
+                        required
+                        id="hora"
+                        name="hora"
+                        label="Hora"
+                        fullWidth
+                        autoComplete="hora"
+                        variant="standard"
+                        value={hora}
+                        onChange={e => setHora(e.target.value)}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={8}>
+                      <TextField
+                        required
+                        id="cliente"
+                        name="cliente"
+                        label="Cliente"
+                        fullWidth
+                        autoComplete="cliente"
+                        variant="standard"
+                        value={cliente}
+                        onChange={e => setCliente(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
                         required
-                        id="email"
-                        name="email"
-                        label="Email"
+                        id="convenio"
+                        name="convenio"
+                        label="Convênio"
                         fullWidth
-                        autoComplete="email"
+                        autoComplete="convenio"
                         variant="standard"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        value={convenio}
+                        onChange={e => setConvenio(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12} sm={3}>
@@ -133,28 +165,26 @@ function DashboardContent() {
                           onChange={e => setTipo(e.target.value)}
                           label="tipo"
                         >
-                          <MenuItem value={1}>Administrador</MenuItem>
-                          <MenuItem value={2}>Gerente</MenuItem>
-                          <MenuItem value={3}>Funcionário</MenuItem>
+                          <MenuItem value={1}>Consulta</MenuItem>
+                          <MenuItem value={2}>Exame</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={3}>
                       <TextField
-                        type="password"
                         required
-                        id="senha"
-                        name="senha"
-                        label="Senha"
+                        id="telefone"
+                        name="telefone"
+                        label="Telefone"
                         fullWidth
-                        autoComplete="senha"
+                        autoComplete="telefone"
                         variant="standard"
-                        value={senha}
-                        onChange={e => setSenha(e.target.value)}
+                        value={telefone}
+                        onChange={e => setTelefone(e.target.value)}
                       />
                     </Grid>
                     <Grid item xs={12} sm={12}>
-                      <Button style={{backgroundColor: "green"}} variant="contained" onClick={handleSubmit}><SaveIcon />Salvar</Button>
+                      <Button style={{ backgroundColor: "green" }} variant="contained" onClick={handleSubmit}><SaveIcon />Salvar</Button>
                     </Grid>
                   </Grid>
                 </Paper>
@@ -168,6 +198,6 @@ function DashboardContent() {
   );
 }
 
-export default function UsuarioEditar() {
+export default function AgendamentoEditar() {
   return <DashboardContent />;
 }

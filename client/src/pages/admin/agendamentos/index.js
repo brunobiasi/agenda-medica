@@ -21,29 +21,29 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import api from '../../../services/api';
-import { getNomeTipo, getNomeTipoLabel } from '../../../functions/static_data_user';
+import { getNomeTipo, getNomeTipoLabel } from '../../../functions/static_data_sched';
 
 const mdTheme = createTheme();
 
 function DashboardContent() {
 
-  const [usuarios, setUsuarios] = useState([]);
+  const [agendamentos, setAgendamentos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadUsuarios() {
-      const response = await api.get("/api/usuarios");
-      setUsuarios(response.data);
+    async function loadAgendamentos() {
+      const response = await api.get("/api/agendamentos");
+      setAgendamentos(response.data);
       setLoading(false);
     }
-    loadUsuarios();
+    loadAgendamentos();
   }, []);
 
   async function handleDelete(id) {
-    if (window.confirm("Deseja realmente excluir este usuário?")) {
-      var result = await api.delete('/api/usuarios/' + id);
+    if (window.confirm("Deseja realmente excluir este agendamento?")) {
+      var result = await api.delete('/api/agendamentos/' + id);
       if (result.status === 200) {
-        window.location.href = '/admin/usuarios';
+        window.location.href = '/admin/agendamentos';
       } else {
         alert('Ocorreu um erro. Por favor, tente novamente!');
       }
@@ -53,7 +53,7 @@ function DashboardContent() {
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
-        <MenuAdmin title={'USUÁRIOS'} />
+        <MenuAdmin title={'AGENDAMENTOS'} />
         <Box
           component="main"
           sx={{
@@ -70,7 +70,7 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
-                <Button style={{marginBottom: 10}} variant="contained" href={'/admin/usuarios/cadastrar'}><AddIcon />Cadastrar</Button>
+                <Button style={{marginBottom: 10}} variant="contained" href={'/admin/agendamentos/cadastrar'}><AddIcon />Cadastrar</Button>
                 <Paper
                   sx={{
                     p: 2,
@@ -79,7 +79,7 @@ function DashboardContent() {
                     height: 450,
                   }}
                 >
-                  <h2>Listagem de Usuários</h2>
+                  <h2>Listagem de Agendamentos</h2>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={12}>
                       <TableContainer component={Paper}>
@@ -87,28 +87,32 @@ function DashboardContent() {
                           <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                               <TableRow>
-                                <TableCell>Nome</TableCell>
-                                <TableCell align="center">Email</TableCell>
+                                <TableCell>Data</TableCell>
+                                <TableCell align="center">Hora</TableCell>
+                                <TableCell align="center">Cliente</TableCell>
+                                <TableCell align="center">Convênio</TableCell>
                                 <TableCell align="center">Tipo</TableCell>
-                                <TableCell align="center">Data de Cadastro</TableCell>
+                                <TableCell align="center">Telefone</TableCell>
                                 <TableCell align="right">Opções</TableCell>
                               </TableRow>
                             </TableHead>
                             <TableBody>
-                              {usuarios.map((row) => (
+                              {agendamentos.map((row) => (
                                 <TableRow
                                   key={row.id}
                                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
                                   <TableCell component="th" scope="row">
-                                    {row.name}
+                                    {row.date}
                                   </TableCell>
-                                  <TableCell align="center">{row.email}</TableCell>
+                                  <TableCell align="center">{row.hour}</TableCell>
+                                  <TableCell align="center">{row.client}</TableCell>
+                                  <TableCell align="center">{row.health_insurance}</TableCell>
                                   <TableCell align="center"><Chip label={getNomeTipo(row.type)} color={getNomeTipoLabel(row.type)} /></TableCell>
-                                  <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
+                                  <TableCell align="center">{row.phone}</TableCell>
                                   <TableCell align="right">
                                     <ButtonGroup aria-label="outlined primary button group">
-                                      <Button variant="contained" href={'/admin/usuarios/editar/' + row.id}><EditIcon /></Button>
+                                      <Button variant="contained" href={'/admin/agendamentos/editar/' + row.id}><EditIcon /></Button>
                                       <Button variant="contained" onClick={() => handleDelete(row.id)}><DeleteIcon /></Button>
                                     </ButtonGroup>
                                   </TableCell>
@@ -130,6 +134,6 @@ function DashboardContent() {
   );
 }
 
-export default function UsuariosListagem() {
+export default function AgendamentosListagem() {
   return <DashboardContent />;
 }

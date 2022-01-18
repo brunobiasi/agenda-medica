@@ -154,7 +154,7 @@ function DashboardContent() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={12}>
-                      <Button style={{backgroundColor: "green"}} variant="contained" onClick={handleSubmit}><SaveIcon />Salvar</Button>
+                      <Button style={{ backgroundColor: "green" }} variant="contained" onClick={handleSubmit}><SaveIcon />Salvar</Button>
                     </Grid>
                   </Grid>
                 </Paper>

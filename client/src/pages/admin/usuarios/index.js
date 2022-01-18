@@ -70,7 +70,7 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
-                <Button style={{marginBottom: 10}} variant="contained" href={'/admin/usuarios/cadastrar'}><AddIcon />Cadastrar</Button>
+                <Button style={{ marginBottom: 10 }} variant="contained" href={'/admin/usuarios/cadastrar'}><AddIcon />Cadastrar</Button>
                 <Paper
                   sx={{
                     p: 2,

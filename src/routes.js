@@ -19,7 +19,7 @@ routes.get('/api/usuarios/destroytoken', User.destroyToken);
 
 // Rotas de Agendamentos
 routes.post('/api/agendamentos', Scheduling.create);
-routes.get('/api/agendamentos', Scheduling.index);
+routes.post('/api/agendamentos/all', Scheduling.index);
 routes.get('/api/agendamentos.details/:id', Scheduling.details);
 routes.delete('/api/agendamentos/:id', Scheduling.delete);
 routes.put('/api/agendamentos', Scheduling.update);

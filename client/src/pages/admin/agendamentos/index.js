@@ -8,6 +8,10 @@ import Paper from '@mui/material/Paper';
 import MenuAdmin from '../../../components/menu-admin';
 import Footer from '../../../components/footer-admin';
 import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -28,10 +32,11 @@ const mdTheme = createTheme();
 function DashboardContent() {
 
   const [data, setData] = useState('');
+  const [medico, setMedico] = useState('');
   const [agendamentos, setAgendamentos] = useState([]);
 
   async function loadAgendamentos() {
-    const response = await api.post("/api/agendamentos/all", { date: data });
+    const response = await api.post("/api/agendamentos/all", { date: data, doctor: medico });
     setAgendamentos(response.data);
   }
 
@@ -81,6 +86,21 @@ function DashboardContent() {
                     />
                   </Grid>
                   <Grid item xs={12} sm={3}>
+                      <FormControl variant="standard" fullWidth required>
+                        <InputLabel id="labelMedico">Médico</InputLabel>
+                        <Select
+                          labelId="labelMedico"
+                          id="medico"
+                          value={medico}
+                          onChange={e => setMedico(e.target.value)}
+                          label="medico"
+                        >
+                          <MenuItem value={'Jairo Lopes Barja'}>Jairo Lopes Barja</MenuItem>
+                          <MenuItem value={'Ricardo Robson Mesquita da Silva'}>Ricardo Robson Mesquita da Silva</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                  <Grid item xs={12} sm={3}>
                     <Button variant="contained" onClick={() => loadAgendamentos()}>Consultar</Button>
                   </Grid>
                 </Grid>
@@ -100,8 +120,7 @@ function DashboardContent() {
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                           <TableHead>
                             <TableRow>
-                              <TableCell>Data</TableCell>
-                              <TableCell align="center">Hora</TableCell>
+                              <TableCell>Hora</TableCell>
                               <TableCell align="center">Cliente</TableCell>
                               <TableCell align="center">Convênio</TableCell>
                               <TableCell align="center">Tipo</TableCell>
@@ -116,9 +135,8 @@ function DashboardContent() {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                               >
                                 <TableCell component="th" scope="row">
-                                  {row.date}
+                                  {row.hour}
                                 </TableCell>
-                                <TableCell align="center">{row.hour}</TableCell>
                                 <TableCell align="center">{row.client}</TableCell>
                                 <TableCell align="center">{row.health_insurance}</TableCell>
                                 <TableCell align="center"><Chip label={getNomeTipo(row.type)} color={getNomeTipoLabel(row.type)} /></TableCell>

@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         hour: DataTypes.STRING,
         client: DataTypes.STRING,
         health_insurance: DataTypes.STRING,
+        doctor: DataTypes.STRING,
         type: DataTypes.INTEGER,
         phone: DataTypes.STRING,
     });

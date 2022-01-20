@@ -27,6 +27,7 @@ function DashboardContent() {
   const [hora, setHora] = useState('');
   const [cliente, setCliente] = useState('');
   const [convenio, setConvenio] = useState('');
+  const [medico, setMedico] = useState('');
   const [tipo, setTipo] = useState('');
   const [telefone, setTelefone] = useState('');
 
@@ -40,6 +41,7 @@ function DashboardContent() {
       setHora(response.data.hour);
       setCliente(response.data.client);
       setConvenio(response.data.health_insurance);
+      setMedico(response.data.doctor);
       setTipo(response.data.type);
       setTelefone(response.data.phone);
     }
@@ -53,12 +55,13 @@ function DashboardContent() {
       hour: hora,
       client: cliente,
       health_insurance: convenio,
+      doctor: medico,
       type: tipo,
       phone: telefone,
       id: idAgendamento,
     }
 
-    if (data !== '' && hora !== '' && cliente !== '' && convenio !== '' && tipo !== '' && telefone !== '') {
+    if (data !== '' && hora !== '' && cliente !== '' && convenio !== '' && medico !== '' && tipo !== '' && telefone !== '') {
       const response = await api.put('/api/agendamentos', dados);
 
       if (response.status === 200) {
@@ -98,7 +101,7 @@ function DashboardContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 290,
+                    height: 450,
                   }}
                 >
                   <h2>Atualização de Agendamentos</h2>
@@ -154,6 +157,21 @@ function DashboardContent() {
                         value={convenio}
                         onChange={e => setConvenio(e.target.value)}
                       />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl variant="standard" fullWidth required>
+                        <InputLabel id="labelMedico">Médico</InputLabel>
+                        <Select
+                          labelId="labelMedico"
+                          id="medico"
+                          value={medico}
+                          onChange={e => setMedico(e.target.value)}
+                          label="medico"
+                        >
+                          <MenuItem value={'Jairo Lopes Barja'}>Jairo Lopes Barja</MenuItem>
+                          <MenuItem value={'Ricardo Robson Mesquita da Silva'}>Ricardo Robson Mesquita da Silva</MenuItem>
+                        </Select>
+                      </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={3}>
                       <FormControl variant="standard" fullWidth>

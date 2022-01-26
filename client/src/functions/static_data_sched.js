@@ -1,9 +1,9 @@
-export const getNomeTipo = (value) => {
-    var arr = ['Consulta', 'Exame'];
+export const getNomeStatus = (value) => {
+    var arr = ['Marcado', 'Confirmado', 'Cancelado'];
     return arr[value - 1];
 }
 
-export const getNomeTipoLabel = (value) => {
-    var arr = ['primary', 'secondary'];
+export const getNomeStatusLabel = (value) => {
+    var arr = ['default', 'primary', 'secondary'];
     return arr[value - 1];
 }

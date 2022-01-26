@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         client: DataTypes.STRING,
         health_insurance: DataTypes.STRING,
         doctor: DataTypes.STRING,
-        type: DataTypes.INTEGER,
+        procedure: DataTypes.STRING,
+        status: DataTypes.STRING,
         phone: DataTypes.STRING,
     });
 

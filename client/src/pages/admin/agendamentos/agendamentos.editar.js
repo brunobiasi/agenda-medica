@@ -28,7 +28,8 @@ function DashboardContent() {
   const [cliente, setCliente] = useState('');
   const [convenio, setConvenio] = useState('');
   const [medico, setMedico] = useState('');
-  const [tipo, setTipo] = useState('');
+  const [proced, setProced] = useState('');
+  const [status, setStatus] = useState('');
   const [telefone, setTelefone] = useState('');
 
   const { idAgendamento } = useParams();
@@ -42,7 +43,8 @@ function DashboardContent() {
       setCliente(response.data.client);
       setConvenio(response.data.health_insurance);
       setMedico(response.data.doctor);
-      setTipo(response.data.type);
+      setProced(response.data.procedure);
+      setStatus(response.data.status);
       setTelefone(response.data.phone);
     }
 
@@ -56,12 +58,13 @@ function DashboardContent() {
       client: cliente,
       health_insurance: convenio,
       doctor: medico,
-      type: tipo,
+      procedure: proced,
+      status: status,
       phone: telefone,
       id: idAgendamento,
     }
 
-    if (data !== '' && hora !== '' && cliente !== '' && convenio !== '' && medico !== '' && tipo !== '' && telefone !== '') {
+    if (data !== '' && hora !== '' && cliente !== '' && convenio !== '' && medico !== '' && proced !== '' && status !== '' && telefone !== '') {
       const response = await api.put('/api/agendamentos', dados);
 
       if (response.status === 200) {
@@ -132,7 +135,7 @@ function DashboardContent() {
                         onChange={e => setHora(e.target.value)}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={8}>
+                    <Grid item xs={12} sm={6}>
                       <TextField
                         required
                         id="cliente"
@@ -146,17 +149,25 @@ function DashboardContent() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="convenio"
-                        name="convenio"
-                        label="Convênio"
-                        fullWidth
-                        autoComplete="convenio"
-                        variant="standard"
-                        value={convenio}
-                        onChange={e => setConvenio(e.target.value)}
-                      />
+                      <FormControl variant="standard" fullWidth>
+                        <InputLabel id="labelConvenio">Convênio</InputLabel>
+                        <Select
+                          labelId="labelConvenio"
+                          id="convenio"
+                          value={convenio}
+                          onChange={e => setConvenio(e.target.value)}
+                          label="convenio"
+                        >
+                          <MenuItem value={'Amil'}>Amil</MenuItem>
+                          <MenuItem value={'Bradesco Saúde'}>Bradesco Saúde</MenuItem>
+                          <MenuItem value={'Capesesp'}>Capesesp</MenuItem>
+                          <MenuItem value={'Casf'}>Casf</MenuItem>
+                          <MenuItem value={'Saúde Petrobras'}>Saúde Petrobras</MenuItem>
+                          <MenuItem value={'Postal Saúde'}>Postal Saúde</MenuItem>
+                          <MenuItem value={'Sulamérica'}>Sulamérica</MenuItem>
+                          <MenuItem value={'Unimed'}>Unimed</MenuItem>
+                        </Select>
+                      </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormControl variant="standard" fullWidth required>
@@ -173,18 +184,35 @@ function DashboardContent() {
                         </Select>
                       </FormControl>
                     </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl variant="standard" fullWidth>
+                        <InputLabel id="labelProced">Procedimento</InputLabel>
+                        <Select
+                          labelId="labelProced"
+                          id="proced"
+                          value={proced}
+                          onChange={e => setProced(e.target.value)}
+                          label="proced"
+                        >
+                          <MenuItem value={'Consulta'}>10101012 - Consulta</MenuItem>
+                          <MenuItem value={'Tonometria'}>41301323 - Tonometria</MenuItem>
+                          <MenuItem value={'Mapeamento de retina'}>41301250 - Mapeamento de retina</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
                     <Grid item xs={12} sm={3}>
                       <FormControl variant="standard" fullWidth>
-                        <InputLabel id="labelTipo">Tipo</InputLabel>
+                        <InputLabel id="labelStatus">Status</InputLabel>
                         <Select
-                          labelId="labelTipo"
-                          id="tipo"
-                          value={tipo}
-                          onChange={e => setTipo(e.target.value)}
-                          label="tipo"
+                          labelId="labelStatus"
+                          id="status"
+                          value={status}
+                          onChange={e => setStatus(e.target.value)}
+                          label="status"
                         >
-                          <MenuItem value={1}>Consulta</MenuItem>
-                          <MenuItem value={2}>Exame</MenuItem>
+                          <MenuItem value={'1'}>Marcado</MenuItem>
+                          <MenuItem value={'2'}>Confirmado</MenuItem>
+                          <MenuItem value={'3'}>Cancelado</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>

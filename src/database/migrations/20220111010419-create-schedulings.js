@@ -29,9 +29,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      type: {
-        type: Sequelize.INTEGER,
-        defaultValue: 1,
+      procedure: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      status: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       phone: {

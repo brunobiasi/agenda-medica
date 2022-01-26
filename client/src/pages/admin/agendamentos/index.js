@@ -25,7 +25,7 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import api from '../../../services/api';
-import { getNomeTipo, getNomeTipoLabel } from '../../../functions/static_data_sched';
+import { getNomeStatus, getNomeStatusLabel } from '../../../functions/static_data_sched';
 
 const mdTheme = createTheme();
 
@@ -85,7 +85,7 @@ function DashboardContent() {
                       onChange={e => setData(e.target.value)}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={3}>
+                  <Grid item xs={12} sm={6}>
                       <FormControl variant="standard" fullWidth required>
                         <InputLabel id="labelMedico">Médico</InputLabel>
                         <Select
@@ -123,7 +123,8 @@ function DashboardContent() {
                               <TableCell>Hora</TableCell>
                               <TableCell align="center">Cliente</TableCell>
                               <TableCell align="center">Convênio</TableCell>
-                              <TableCell align="center">Tipo</TableCell>
+                              <TableCell align="center">Procedimento</TableCell>
+                              <TableCell align="center">Status</TableCell>
                               <TableCell align="center">Telefone</TableCell>
                               <TableCell align="right">Opções</TableCell>
                             </TableRow>
@@ -139,7 +140,8 @@ function DashboardContent() {
                                 </TableCell>
                                 <TableCell align="center">{row.client}</TableCell>
                                 <TableCell align="center">{row.health_insurance}</TableCell>
-                                <TableCell align="center"><Chip label={getNomeTipo(row.type)} color={getNomeTipoLabel(row.type)} /></TableCell>
+                                <TableCell align="center">{row.procedure}</TableCell>
+                                <TableCell align="center"><Chip label={getNomeStatus(row.status)} color={getNomeStatusLabel(row.status)} /></TableCell>
                                 <TableCell align="center">{row.phone}</TableCell>
                                 <TableCell align="right">
                                   <ButtonGroup aria-label="outlined primary button group">

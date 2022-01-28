@@ -89,12 +89,12 @@ function DashboardContent() {
                     <Grid item xs={12} sm={3}>
                       <TextField
                         required
+                        type="date"
                         id="data"
                         name="data"
-                        label="Data"
                         fullWidth
                         autoComplete="data"
-                        variant="standard"
+                        variant="outlined"
                         value={data}
                         onChange={e => setData(e.target.value)}
                       />
@@ -102,12 +102,12 @@ function DashboardContent() {
                     <Grid item xs={12} sm={3}>
                       <TextField
                         required
+                        type="time"
                         id="hora"
                         name="hora"
-                        label="Hora"
                         fullWidth
                         autoComplete="hora"
-                        variant="standard"
+                        variant="outlined"
                         value={hora}
                         onChange={e => setHora(e.target.value)}
                       />
@@ -126,7 +126,7 @@ function DashboardContent() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                      <FormControl variant="standard" fullWidth>
+                      <FormControl variant="standard" fullWidth required>
                         <InputLabel id="labelConvenio">Convênio</InputLabel>
                         <Select
                           labelId="labelConvenio"
@@ -162,7 +162,7 @@ function DashboardContent() {
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                      <FormControl variant="standard" fullWidth>
+                      <FormControl variant="standard" fullWidth required>
                         <InputLabel id="labelProced">Procedimento</InputLabel>
                         <Select
                           labelId="labelProced"
@@ -178,7 +178,7 @@ function DashboardContent() {
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={3}>
-                      <FormControl variant="standard" fullWidth>
+                      <FormControl variant="standard" fullWidth required>
                         <InputLabel id="labelStatus">Status</InputLabel>
                         <Select
                           labelId="labelStatus"

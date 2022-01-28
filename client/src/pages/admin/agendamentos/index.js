@@ -75,12 +75,12 @@ function DashboardContent() {
                   <Grid item xs={12} sm={3}>
                     <TextField
                       required
+                      type="date"
                       id="data"
                       name="data"
-                      label="Data"
                       fullWidth
                       autoComplete="data"
-                      variant="standard"
+                      variant="outlined"
                       value={data}
                       onChange={e => setData(e.target.value)}
                     />

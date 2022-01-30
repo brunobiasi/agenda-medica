@@ -7,7 +7,9 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import MenuAdmin from '../../../components/menu-admin';
 import Footer from '../../../components/footer-admin';
+import TextMaskCustom from '../../../components/text-mask-custom';
 import TextField from '@mui/material/TextField';
+import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -194,17 +196,16 @@ function DashboardContent() {
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={3}>
-                      <TextField
-                        required
-                        id="telefone"
-                        name="telefone"
-                        label="Telefone"
-                        fullWidth
-                        autoComplete="telefone"
-                        variant="standard"
-                        value={telefone}
-                        onChange={e => setTelefone(e.target.value)}
-                      />
+                      <FormControl variant="standard">
+                        <InputLabel id="labelTelefone">Telefone</InputLabel>
+                        <Input
+                          value={telefone}
+                          onChange={e => setTelefone(e.target.value)}
+                          name="telefone"
+                          id="telefone"
+                          inputComponent={TextMaskCustom}
+                        />
+                      </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={12}>
                       <Button style={{ backgroundColor: "green" }} variant="contained" onClick={handleSubmit}><SaveIcon />Salvar</Button>

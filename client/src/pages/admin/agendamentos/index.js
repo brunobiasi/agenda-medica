@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -26,19 +26,25 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import api from '../../../services/api';
 import { getNomeStatus, getNomeStatusLabel } from '../../../functions/static_data_sched';
+import { setDate, getDate, dateNow } from '../../../services/date';
 
 const mdTheme = createTheme();
 
 function DashboardContent() {
 
-  const [data, setData] = useState('');
-  const [medico, setMedico] = useState('');
+  const [data, setData] = useState(getDate() || dateNow());
+  const [medico, setMedico] = useState('Jairo Lopes Barja');
   const [agendamentos, setAgendamentos] = useState([]);
 
   async function loadAgendamentos() {
     const response = await api.post("/api/agendamentos/all", { date: data, doctor: medico });
     setAgendamentos(response.data);
   }
+
+  useEffect(() => {
+    loadAgendamentos();
+    setDate('');
+  }, []);
 
   async function handleDelete(id) {
     if (window.confirm("Deseja realmente excluir este agendamento?")) {
@@ -86,20 +92,20 @@ function DashboardContent() {
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                      <FormControl variant="standard" fullWidth required>
-                        <InputLabel id="labelMedico">Médico</InputLabel>
-                        <Select
-                          labelId="labelMedico"
-                          id="medico"
-                          value={medico}
-                          onChange={e => setMedico(e.target.value)}
-                          label="medico"
-                        >
-                          <MenuItem value={'Jairo Lopes Barja'}>Jairo Lopes Barja</MenuItem>
-                          <MenuItem value={'Ricardo Robson Mesquita da Silva'}>Ricardo Robson Mesquita da Silva</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Grid>
+                    <FormControl variant="standard" fullWidth required>
+                      <InputLabel id="labelMedico">Médico</InputLabel>
+                      <Select
+                        labelId="labelMedico"
+                        id="medico"
+                        value={medico}
+                        onChange={e => setMedico(e.target.value)}
+                        label="medico"
+                      >
+                        <MenuItem value={'Jairo Lopes Barja'}>Jairo Lopes Barja</MenuItem>
+                        <MenuItem value={'Ricardo Robson Mesquita da Silva'}>Ricardo Robson Mesquita da Silva</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
                   <Grid item xs={12} sm={3}>
                     <Button variant="contained" onClick={() => loadAgendamentos()}>Consultar</Button>
                   </Grid>

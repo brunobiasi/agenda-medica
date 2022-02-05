@@ -20,6 +20,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
 import { useParams } from 'react-router-dom';
 import api from '../../../services/api';
+import { setDate } from '../../../services/date';
 
 const mdTheme = createTheme();
 
@@ -70,6 +71,7 @@ function DashboardContent() {
       const response = await api.put('/api/agendamentos', dados);
 
       if (response.status === 200) {
+        setDate(data);
         window.location.href = '/admin/agendamentos';
       } else {
         alert('Erro ao atualizar o agendamento!');
@@ -196,9 +198,24 @@ function DashboardContent() {
                           onChange={e => setProced(e.target.value)}
                           label="proced"
                         >
-                          <MenuItem value={'Consulta'}>10101012 - Consulta</MenuItem>
-                          <MenuItem value={'Tonometria'}>41301323 - Tonometria</MenuItem>
-                          <MenuItem value={'Mapeamento de retina'}>41301250 - Mapeamento de retina</MenuItem>
+                          <MenuItem value={'CONSULTA EM CONSULTORIO'}>10101012 - CONSULTA EM CONSULTORIO</MenuItem>
+                          <MenuItem value={'AUTOTRANSPLANTE CONJUNTIVAL'}>30303010 - AUTOTRANSPLANTE CONJUNTIVAL</MenuItem>
+                          <MenuItem value={'PTERIGIO - EXERESE'}>30303060 - PTERIGIO - EXERESE</MenuItem>
+                          <MenuItem value={'TUMOR DE CONJUNTIVA - EXERESE'}>30303109 - TUMOR DE CONJUNTIVA - EXERESE</MenuItem>
+                          <MenuItem value={'CORPO ESTRANHO DA CORNEA - RETIRADA'}>30304032 - CORPO ESTRANHO DA CORNEA - RETIRADA</MenuItem>
+                          <MenuItem value={'CAPSULOTOMIA YAG OU CIRURGICA'}>30306019 - CAPSULOTOMIA YAG OU CIRURGICA</MenuItem>
+                          <MenuItem value={'FACECTOMIA COM LENTE INTRA-OCULAR COM FACOEMULSIFICACAO'}>30306027 - FACECTOMIA COM LIO COM FACO</MenuItem>
+                          <MenuItem value={'IMPLANTE SECUNDARIO / EXPLANTE / FIXACAO ESCLERAL OU IRIANA'}>30306060 - IMPLANTE SECUNDARIO</MenuItem>
+                          <MenuItem value={'CIRURGIAS FISTULIZANTES ANTIGLAUCOMATOSAS'}>30310032 - CIRURGIAS FISTULIZANTES ANTIGLAUCOMATOSAS</MenuItem>
+                          <MenuItem value={'IRIDECTOMIA (LASER OU CIRURGICA)'}>30310083 - IRIDECTOMIA (LASER OU CIRURGICA)</MenuItem>
+                          <MenuItem value={'CAMPIMETRIA COMPUTADORIZADA - MONOCULAR'}>40103137 - CAMPIMETRIA COMPUTADORIZADA - MONOCULAR</MenuItem>
+                          <MenuItem value={'CURVA TENSIONAL DIARIA - BINOCULAR'}>41301129 - CURVA TENSIONAL DIARIA - BINOCULAR</MenuItem>
+                          <MenuItem value={'GONIOSCOPIA - BINOCULAR'}>41301242 - GONIOSCOPIA - BINOCULAR</MenuItem>
+                          <MenuItem value={'MAPEAMENTO DE RETINA OFTALMOSCOPIA INDIRETA - MONOCULAR'}>41301250 - MAPEAMENTO DE RETINA - MONOCULAR</MenuItem>
+                          <MenuItem value={'TONOMETRIA - BINOCULAR'}>41301323 - TONOMETRIA - BINOCULAR</MenuItem>
+                          <MenuItem value={'TESTE PROVOCATIVO PARA GLAUCOMA - BINOCULAR'}>41401301 - TESTE PROVOCATIVO PARA GLAUCOMA - BINOCULAR</MenuItem>
+                          <MenuItem value={'BIOMETRIA ULTRA-SONICA - MONOCULAR'}>41501012 - BIOMETRIA ULTRA-SONICA - MONOCULAR</MenuItem>
+                          <MenuItem value={'PAQUIMETRIA ULTRA-SONICA - MONOCULAR'}>41501128 - PAQUIMETRIA ULTRA-SONICA - MONOCULAR</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>

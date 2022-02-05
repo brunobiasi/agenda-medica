@@ -3,7 +3,7 @@ const { Scheduling } = require('../models');
 module.exports = {
     async index(req, res) {
         const { date, doctor } = req.body;
-        const scheduling = await Scheduling.findAll({ where: { date, doctor } });
+        const scheduling = await Scheduling.findAll({ where: { date, doctor, }, order: [['hour', 'ASC']] });
         res.json(scheduling);
     },
     async create(req, res) {

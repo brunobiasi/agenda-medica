@@ -76,7 +76,6 @@ function DashboardContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 450,
                   }}
                 >
                   <h2>Listagem de Usuários</h2>

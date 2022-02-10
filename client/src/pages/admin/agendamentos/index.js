@@ -74,7 +74,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
+          <Container maxWidth="xl" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
                 <Grid container spacing={3}>
@@ -116,7 +116,6 @@ function DashboardContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 450,
                   }}
                 >
                   <h2>Listagem de Agendamentos</h2>

@@ -72,7 +72,7 @@ function DashboardContent() {
 
       if (response.status === 200) {
         setDate(data);
-        window.location.href = '/admin/agendamentos';
+        window.location.href = '/';
       } else {
         alert('Erro ao atualizar o agendamento!');
       }
@@ -108,7 +108,6 @@ function DashboardContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 450,
                   }}
                 >
                   <h2>Atualização de Agendamentos</h2>
@@ -162,6 +161,7 @@ function DashboardContent() {
                           onChange={e => setConvenio(e.target.value)}
                           label="convenio"
                         >
+                          <MenuItem value={'Particular'}>Particular</MenuItem>
                           <MenuItem value={'Amil'}>Amil</MenuItem>
                           <MenuItem value={'Bradesco Saúde'}>Bradesco Saúde</MenuItem>
                           <MenuItem value={'Capesesp'}>Capesesp</MenuItem>
@@ -198,24 +198,24 @@ function DashboardContent() {
                           onChange={e => setProced(e.target.value)}
                           label="proced"
                         >
-                          <MenuItem value={'CONSULTA EM CONSULTORIO'}>10101012 - CONSULTA EM CONSULTORIO</MenuItem>
-                          <MenuItem value={'AUTOTRANSPLANTE CONJUNTIVAL'}>30303010 - AUTOTRANSPLANTE CONJUNTIVAL</MenuItem>
-                          <MenuItem value={'PTERIGIO - EXERESE'}>30303060 - PTERIGIO - EXERESE</MenuItem>
-                          <MenuItem value={'TUMOR DE CONJUNTIVA - EXERESE'}>30303109 - TUMOR DE CONJUNTIVA - EXERESE</MenuItem>
-                          <MenuItem value={'CORPO ESTRANHO DA CORNEA - RETIRADA'}>30304032 - CORPO ESTRANHO DA CORNEA - RETIRADA</MenuItem>
-                          <MenuItem value={'CAPSULOTOMIA YAG OU CIRURGICA'}>30306019 - CAPSULOTOMIA YAG OU CIRURGICA</MenuItem>
-                          <MenuItem value={'FACECTOMIA COM LENTE INTRA-OCULAR COM FACOEMULSIFICACAO'}>30306027 - FACECTOMIA COM LIO COM FACO</MenuItem>
-                          <MenuItem value={'IMPLANTE SECUNDARIO / EXPLANTE / FIXACAO ESCLERAL OU IRIANA'}>30306060 - IMPLANTE SECUNDARIO</MenuItem>
-                          <MenuItem value={'CIRURGIAS FISTULIZANTES ANTIGLAUCOMATOSAS'}>30310032 - CIRURGIAS FISTULIZANTES ANTIGLAUCOMATOSAS</MenuItem>
-                          <MenuItem value={'IRIDECTOMIA (LASER OU CIRURGICA)'}>30310083 - IRIDECTOMIA (LASER OU CIRURGICA)</MenuItem>
-                          <MenuItem value={'CAMPIMETRIA COMPUTADORIZADA - MONOCULAR'}>40103137 - CAMPIMETRIA COMPUTADORIZADA - MONOCULAR</MenuItem>
-                          <MenuItem value={'CURVA TENSIONAL DIARIA - BINOCULAR'}>41301129 - CURVA TENSIONAL DIARIA - BINOCULAR</MenuItem>
-                          <MenuItem value={'GONIOSCOPIA - BINOCULAR'}>41301242 - GONIOSCOPIA - BINOCULAR</MenuItem>
-                          <MenuItem value={'MAPEAMENTO DE RETINA OFTALMOSCOPIA INDIRETA - MONOCULAR'}>41301250 - MAPEAMENTO DE RETINA - MONOCULAR</MenuItem>
-                          <MenuItem value={'TONOMETRIA - BINOCULAR'}>41301323 - TONOMETRIA - BINOCULAR</MenuItem>
-                          <MenuItem value={'TESTE PROVOCATIVO PARA GLAUCOMA - BINOCULAR'}>41401301 - TESTE PROVOCATIVO PARA GLAUCOMA - BINOCULAR</MenuItem>
-                          <MenuItem value={'BIOMETRIA ULTRA-SONICA - MONOCULAR'}>41501012 - BIOMETRIA ULTRA-SONICA - MONOCULAR</MenuItem>
-                          <MenuItem value={'PAQUIMETRIA ULTRA-SONICA - MONOCULAR'}>41501128 - PAQUIMETRIA ULTRA-SONICA - MONOCULAR</MenuItem>
+                          <MenuItem value={'Consulta em Consultório'}>10101012 - Consulta em Consultório</MenuItem>
+                          <MenuItem value={'Autotransplante Conjuntival'}>30303010 - Autotransplante Conjuntival</MenuItem>
+                          <MenuItem value={'Pterígio - Exérese'}>30303060 - Pterígio - Exérese</MenuItem>
+                          <MenuItem value={'Tumor de Conjuntiva - Exérese'}>30303109 - Tumor de Conjuntiva - Exérese</MenuItem>
+                          <MenuItem value={'Corpo Estranho da Córnea - Retirada'}>30304032 - Corpo Estranho da Córnea - Retirada</MenuItem>
+                          <MenuItem value={'Capsulotomia Yag ou Cirúrgica'}>30306019 - Capsulotomia Yag ou Cirúrgica</MenuItem>
+                          <MenuItem value={'Facectomia com LIO com Faco'}>30306027 - Facectomia com LIO com Faco</MenuItem>
+                          <MenuItem value={'Implante Secundário'}>30306060 - Implante Secundário</MenuItem>
+                          <MenuItem value={'Cirurgias Fistulizantes Antiglaucomatosas'}>30310032 - Cirurgias Fistulizantes Antiglaucomatosas</MenuItem>
+                          <MenuItem value={'Iridectomia (Laser ou Cirúrgica)'}>30310083 - Iridectomia (Laser ou Cirúrgica)</MenuItem>
+                          <MenuItem value={'Campimetria Computadorizada - Monocular'}>40103137 - Campimetria Computadorizada - Monocular</MenuItem>
+                          <MenuItem value={'Curva Tensional Diária - Binocular'}>41301129 - Curva Tensional Diária - Binocular</MenuItem>
+                          <MenuItem value={'Gonioscopia - Binocular'}>41301242 - Gonioscopia - Binocular</MenuItem>
+                          <MenuItem value={'Mapeamento de Retina - Monocular'}>41301250 - Mapeamento de Retina - Monocular</MenuItem>
+                          <MenuItem value={'Tonometria - Binocular'}>41301323 - Tonometria - Binocular</MenuItem>
+                          <MenuItem value={'Teste Provocativo para Glaucoma - Binocular'}>41401301 - Teste Provocativo para Glaucoma - Binocular</MenuItem>
+                          <MenuItem value={'Biometria Ultra-Sônica - Monocular'}>41501012 - Biometria Ultra-Sônica - Monocular</MenuItem>
+                          <MenuItem value={'Paquimetria Ultra-Sônica - Monocular'}>41501128 - Paquimetria Ultra-Sônica - Monocular</MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>

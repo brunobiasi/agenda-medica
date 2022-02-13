@@ -50,7 +50,8 @@ function DashboardContent() {
     if (window.confirm("Deseja realmente excluir este agendamento?")) {
       var result = await api.delete('/api/agendamentos/' + id);
       if (result.status === 200) {
-        window.location.href = '/admin/agendamentos';
+        setDate(data);
+        window.location.href = '/';
       } else {
         alert('Ocorreu um erro. Por favor, tente novamente!');
       }
@@ -91,7 +92,7 @@ function DashboardContent() {
                       onChange={e => setData(e.target.value)}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={3}>
                     <FormControl variant="standard" fullWidth required>
                       <InputLabel id="labelMedico">Médico</InputLabel>
                       <Select
@@ -150,7 +151,7 @@ function DashboardContent() {
                                 <TableCell align="center">{row.phone}</TableCell>
                                 <TableCell align="right">
                                   <ButtonGroup aria-label="outlined primary button group">
-                                    <Button variant="contained" href={'/admin/agendamentos/editar/' + row.id}><EditIcon /></Button>
+                                    <Button variant="contained" href={'/agendamentos/editar/' + row.id}><EditIcon /></Button>
                                     <Button variant="contained" onClick={() => handleDelete(row.id)}><DeleteIcon /></Button>
                                   </ButtonGroup>
                                 </TableCell>

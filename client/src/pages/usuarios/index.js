@@ -43,7 +43,7 @@ function DashboardContent() {
     if (window.confirm("Deseja realmente excluir este usuário?")) {
       var result = await api.delete('/api/usuarios/' + id);
       if (result.status === 200) {
-        window.location.href = '/admin/usuarios';
+        window.location.href = '/usuarios';
       } else {
         alert('Ocorreu um erro. Por favor, tente novamente!');
       }
@@ -107,7 +107,7 @@ function DashboardContent() {
                                   <TableCell align="center">{new Date(row.createdAt).toLocaleString('pt-br')}</TableCell>
                                   <TableCell align="right">
                                     <ButtonGroup aria-label="outlined primary button group">
-                                      <Button variant="contained" href={'/admin/usuarios/editar/' + row.id}><EditIcon /></Button>
+                                      <Button variant="contained" href={'/usuarios/editar/' + row.id}><EditIcon /></Button>
                                       <Button variant="contained" onClick={() => handleDelete(row.id)}><DeleteIcon /></Button>
                                     </ButtonGroup>
                                   </TableCell>

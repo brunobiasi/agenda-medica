@@ -56,7 +56,7 @@ function DashboardContent() {
       const response = await api.put('/api/usuarios', data);
 
       if (response.status === 200) {
-        window.location.href = '/admin/usuarios';
+        window.location.href = '/usuarios';
       } else {
         alert('Erro ao atualizar o usuário!');
       }
@@ -92,7 +92,6 @@ function DashboardContent() {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 290,
                   }}
                 >
                   <h2>Atualização de Usuários</h2>

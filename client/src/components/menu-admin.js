@@ -12,7 +12,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { mainListItems, secondaryListItems } from './list-menu-admin';
 import { getNomeUsuario } from '../services/auth';
-import logoSistema from '../assets/img/logo-empresa.png';
 
 const drawerWidth = 240;
 
@@ -60,7 +59,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function MenuAdmin({title}) {
+export default function MenuAdmin({ title }) {
 
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -109,7 +108,15 @@ export default function MenuAdmin({title}) {
             px: [1],
           }}
         >
-          <img style={{width: 75, height: 50}} src={logoSistema} alt="Logo sistema" />
+          <Typography
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+            sx={{ flexGrow: 1 }}
+          >
+            ClassClinic
+          </Typography>
           <IconButton onClick={toggleDrawer}>
             <ChevronLeftIcon />
           </IconButton>

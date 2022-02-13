@@ -1,21 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import MenuAdmin from '../../../components/menu-admin';
-import Footer from '../../../components/footer-admin';
+import MenuAdmin from '../../components/menu-admin';
+import Footer from '../../components/footer-admin';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
-import api from '../../../services/api';
+import { useParams } from 'react-router-dom';
+import api from '../../services/api';
 
 const mdTheme = createTheme();
 
@@ -26,21 +28,37 @@ function DashboardContent() {
   const [senha, setSenha] = useState('');
   const [tipo, setTipo] = useState('');
 
+  const { idUsuario } = useParams();
+
+  useEffect(() => {
+    async function getUsuario() {
+      var response = await api.get('/api/usuarios.details/' + idUsuario);
+
+      setNome(response.data.name);
+      setEmail(response.data.email);
+      setSenha(response.data.password_hash);
+      setTipo(response.data.type);
+    }
+
+    getUsuario();
+  }, []);
+
   async function handleSubmit() {
     const data = {
       name: nome,
       email: email,
-      type: tipo,
       password: senha,
+      type: tipo,
+      id: idUsuario
     }
 
     if (nome !== '' && email !== '' && senha !== '' && tipo !== '') {
-      const response = await api.post('/api/usuarios', data);
+      const response = await api.put('/api/usuarios', data);
 
       if (response.status === 200) {
         window.location.href = '/admin/usuarios';
       } else {
-        alert('Erro ao cadastrar o usuário!');
+        alert('Erro ao atualizar o usuário!');
       }
     } else {
       alert('Por favor, preencha todos os dados!');
@@ -67,7 +85,8 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
-                <Button style={{ marginBottom: 10 }} variant="contained" href={'/admin/usuarios'}><ArrowBackIcon />Voltar</Button>
+                <Button style={{ marginBottom: 10, marginRight: 5 }} variant="contained" href={'/usuarios'}><ArrowBackIcon />Voltar</Button>
+                <Button style={{ marginBottom: 10 }} variant="contained" href={'/usuarios/cadastrar'}><AddIcon />Cadastrar</Button>
                 <Paper
                   sx={{
                     p: 2,
@@ -76,7 +95,7 @@ function DashboardContent() {
                     height: 290,
                   }}
                 >
-                  <h2>Cadastro de Usuários</h2>
+                  <h2>Atualização de Usuários</h2>
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={12}>
                       <TextField
@@ -149,6 +168,6 @@ function DashboardContent() {
   );
 }
 
-export default function UsuarioCadastar() {
+export default function UsuarioEditar() {
   return <DashboardContent />;
 }

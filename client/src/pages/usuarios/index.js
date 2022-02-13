@@ -5,8 +5,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import MenuAdmin from '../../../components/menu-admin';
-import Footer from '../../../components/footer-admin';
+import MenuAdmin from '../../components/menu-admin';
+import Footer from '../../components/footer-admin';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -20,8 +20,8 @@ import LinearProgress from '@mui/material/LinearProgress';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import api from '../../../services/api';
-import { getNomeTipo, getNomeTipoLabel } from '../../../functions/static_data_user';
+import api from '../../services/api';
+import { getNomeTipo, getNomeTipoLabel } from '../../functions/static_data_user';
 
 const mdTheme = createTheme();
 
@@ -70,7 +70,7 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
-                <Button style={{ marginBottom: 10 }} variant="contained" href={'/admin/usuarios/cadastrar'}><AddIcon />Cadastrar</Button>
+                <Button style={{ marginBottom: 10 }} variant="contained" href={'/usuarios/cadastrar'}><AddIcon />Cadastrar</Button>
                 <Paper
                   sx={{
                     p: 2,

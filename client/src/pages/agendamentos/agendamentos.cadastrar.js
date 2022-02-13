@@ -5,9 +5,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import MenuAdmin from '../../../components/menu-admin';
-import Footer from '../../../components/footer-admin';
-import TextMaskCustom from '../../../components/text-mask-custom';
+import MenuAdmin from '../../components/menu-admin';
+import Footer from '../../components/footer-admin';
+import TextMaskCustom from '../../components/text-mask-custom';
 import TextField from '@mui/material/TextField';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -17,8 +17,8 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
-import api from '../../../services/api';
-import { setDate } from '../../../services/date';
+import api from '../../services/api';
+import { setDate } from '../../services/date';
 
 const mdTheme = createTheme();
 
@@ -79,7 +79,7 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 2, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item sm={12}>
-                <Button style={{ marginBottom: 10 }} variant="contained" href={'/admin/agendamentos'}><ArrowBackIcon />Voltar</Button>
+                <Button style={{ marginBottom: 10 }} variant="contained" href={'/'}><ArrowBackIcon />Voltar</Button>
                 <Paper
                   sx={{
                     p: 2,

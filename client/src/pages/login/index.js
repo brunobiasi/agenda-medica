@@ -17,8 +17,8 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import CircularProgress from '@mui/material/CircularProgress';
-import api from '../../../services/api';
-import { login, setIdUsuario, setNomeUsuario, setTipoUsuario } from '../../../services/auth';
+import api from '../../services/api';
+import { login, setIdUsuario, setNomeUsuario, setTipoUsuario } from '../../services/auth';
 
 function Copyright(props) {
     return (
@@ -51,7 +51,7 @@ export default function SignIn() {
                         setNomeUsuario(res.data.user_name);
                         setTipoUsuario(res.data.user_type);
 
-                        window.location.href = '/admin';
+                        window.location.href = '/';
                     } else if (res.data.status === 2) {
                         alert("Atenção: " + res.data.error);
                     }

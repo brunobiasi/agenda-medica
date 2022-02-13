@@ -5,8 +5,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import MenuAdmin from '../../../components/menu-admin';
-import Footer from '../../../components/footer-admin';
+import MenuAdmin from '../../components/menu-admin';
+import Footer from '../../components/footer-admin';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -24,9 +24,9 @@ import Chip from '@mui/material/Chip';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import api from '../../../services/api';
-import { getNomeStatus, getNomeStatusLabel } from '../../../functions/static_data_sched';
-import { setDate, getDate, dateNow } from '../../../services/date';
+import api from '../../services/api';
+import { getNomeStatus, getNomeStatusLabel } from '../../functions/static_data_sched';
+import { setDate, getDate, dateNow } from '../../services/date';
 
 const mdTheme = createTheme();
 
@@ -110,7 +110,7 @@ function DashboardContent() {
                     <Button variant="contained" onClick={() => loadAgendamentos()}>Consultar</Button>
                   </Grid>
                 </Grid>
-                <Button style={{ marginTop: 10, marginBottom: 10 }} variant="contained" href={'/admin/agendamentos/cadastrar'}><AddIcon />Cadastrar</Button>
+                <Button style={{ marginTop: 10, marginBottom: 10 }} variant="contained" href={'/agendamentos/cadastrar'}><AddIcon />Cadastrar</Button>
                 <Paper
                   sx={{
                     p: 2,

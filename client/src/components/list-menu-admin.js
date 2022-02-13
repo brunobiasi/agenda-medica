@@ -12,19 +12,13 @@ import api from '../services/api';
 
 export const mainListItems = (
   <div>
-    <ListItem button component="a" href="/admin">
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <ListItem button component="a" href="/admin/usuarios">
+    <ListItem button component="a" href="/usuarios">
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Usuários" />
     </ListItem>
-    <ListItem button component="a" href="/admin/agendamentos">
+    <ListItem button component="a" href="/">
       <ListItemIcon>
         <CalendarTodayIcon />
       </ListItemIcon>
@@ -50,7 +44,7 @@ async function confirmSair() {
     const response = await api.get('/api/usuarios/destroytoken', { headers: { token: getToken() } });
     if (response.status === 200) {
       logout();
-      window.location.href = '/admin/login';
+      window.location.href = '/login';
     } else {
       alert("Não foi possível fazer o logout!");
     }
